@@ -1,3 +1,3 @@
 ﻿namespace Application.Features.AddFile;
 
-public record AddFileCommand(string Name, string FileId);
+public record AddFileCommand(string Name, string FileId, string FileContent);

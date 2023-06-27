@@ -25,11 +25,21 @@ public class WeatherForecastController : ControllerBase
         _commandDispatcher = commandDispatcher;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public async Task<IEnumerable<WeatherForecast>> Get(CancellationToken token)
+    [HttpPost(Name = "GetWeatherForecast")]
+    public async Task<IEnumerable<WeatherForecast>> Get(IFormFile file, CancellationToken token)
     {
-        var command = new AddFileCommand("DUPAAAA", Guid.NewGuid().ToString());
-        _commandDispatcher.Send(command, token);
+        //TODO: add file validation
+        
+        using (var ms = new MemoryStream())
+        {
+            await file.CopyToAsync(ms, token);
+            var fileBytes = ms.ToArray();
+            string s = Convert.ToBase64String(fileBytes);
+            // act on the Base64 data
+            
+            var command = new AddFileCommand(file.Name, Guid.NewGuid().ToString(), FileContent: s);
+            await _commandDispatcher.Send(command, token);
+        }
         
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
