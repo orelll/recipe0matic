@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackupRTester", "BackupRTester\BackupRTester.csproj", "{9B93EB8E-08AA-4A8B-A704-48083241E361}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmosDbTester", "CosmosDbTester\CosmosDbTester.csproj", "{321D5375-876F-4873-9EB4-5CAA708544EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.CosmosDb", "Infrastructure.CosmosDb\Infrastructure.CosmosDb.csproj", "{EA78FE40-E509-4F58-B93A-4B2F1BF4F519}"
@@ -12,16 +10,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{D886C700-A31F-4BF6-AF13-D3A5581282DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Blob", "Infrastructure.Blob\Infrastructure.Blob.csproj", "{0719A0FF-4AAA-4778-8028-511A63FA4832}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Postgres", "Infrastructure.Postgres\Infrastructure.Postgres.csproj", "{11FFB961-3217-42A7-A026-4C1C89411F19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{61DBF426-A830-4A7A-8E07-3A78D23ECBFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9B93EB8E-08AA-4A8B-A704-48083241E361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B93EB8E-08AA-4A8B-A704-48083241E361}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B93EB8E-08AA-4A8B-A704-48083241E361}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B93EB8E-08AA-4A8B-A704-48083241E361}.Release|Any CPU.Build.0 = Release|Any CPU
 		{321D5375-876F-4873-9EB4-5CAA708544EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{321D5375-876F-4873-9EB4-5CAA708544EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{321D5375-876F-4873-9EB4-5CAA708544EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,5 +42,17 @@ Global
 		{D886C700-A31F-4BF6-AF13-D3A5581282DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D886C700-A31F-4BF6-AF13-D3A5581282DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D886C700-A31F-4BF6-AF13-D3A5581282DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0719A0FF-4AAA-4778-8028-511A63FA4832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0719A0FF-4AAA-4778-8028-511A63FA4832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0719A0FF-4AAA-4778-8028-511A63FA4832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0719A0FF-4AAA-4778-8028-511A63FA4832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11FFB961-3217-42A7-A026-4C1C89411F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11FFB961-3217-42A7-A026-4C1C89411F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11FFB961-3217-42A7-A026-4C1C89411F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11FFB961-3217-42A7-A026-4C1C89411F19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61DBF426-A830-4A7A-8E07-3A78D23ECBFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61DBF426-A830-4A7A-8E07-3A78D23ECBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61DBF426-A830-4A7A-8E07-3A78D23ECBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61DBF426-A830-4A7A-8E07-3A78D23ECBFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

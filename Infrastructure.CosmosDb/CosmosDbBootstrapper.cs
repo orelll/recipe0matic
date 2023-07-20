@@ -11,6 +11,5 @@ public static class CosmosDbBootstrapper
         services.Configure<CosmosDbConfiguration>(opt => configuration.GetSection(CosmosDbConfiguration.Position).Bind(opt));
         
         services.AddScoped<ICosmosClientFactory, CosmosClientFactory>();
-        services.AddScoped<IFileRepository, CosmosFileRepository>();
     }
 }

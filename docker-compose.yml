@@ -6,6 +6,24 @@ services:
     ports:
       - '5672:5672'
       - '15672:15672'
+
+  blob:
+    container_name: recipeomatic_blob
+    image: mcr.microsoft.com/azure-storage/azurite
+    hostname: azurite
+    restart: always
+    command: 'azurite --blobHost 0.0.0.0 --blobPort 10000'
+    ports:
+      - 10000:10000
+        
+  postgres:
+    container_name: recipeomatic_postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - 5432:5432
       
   webapi:
     build:

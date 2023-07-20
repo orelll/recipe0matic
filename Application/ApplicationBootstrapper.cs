@@ -1,5 +1,4 @@
 ﻿using Application.Dispatchers;
-using Application.Features.AddFile;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +15,6 @@ public class ApplicationBootstrapper
     
     public static void ConfigureMediator(IMediatorRegistrationConfigurator cfg)
     {
-        cfg.AddConsumer<AddFileCommandHandler>();
+       
     }
 }

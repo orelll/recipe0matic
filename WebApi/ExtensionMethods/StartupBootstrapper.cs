@@ -1,6 +1,17 @@
 ﻿using Application;
+using Application.Features.Recipes.Create;
+using Application.Features.Recipes.List;
+using Domain;
+using Domain.Abstractions.Commands;
+using Domain.Abstractions.Queries;
+using Domain.Features;
+using Infrastructure.Blob;
+using Infrastructure.Commands;
 using Infrastructure.CosmosDb;
+using Infrastructure.Postgres;
+using Infrastructure.Queries;
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.ExtensionMethods;
 
@@ -16,11 +27,27 @@ public static class StartupBootstrapper
         
         ApplicationBootstrapper.ConfigureApplication(builder.Services, builder.Configuration);
         CosmosDbBootstrapper.ConfigureCosmosDb(builder.Services, builder.Configuration);
+        BlobBootstrapper.ConfigureBlobStorage(builder.Services, builder.Configuration);
         
         //TODO: implement switch depending on environment
         builder.Services.ConfigureMassTransitWithRabbitMq(mediatorCfg: ApplicationBootstrapper.ConfigureMediator);
         
+        builder.Services.AddDbContext<RecipesDbContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("RecipesContext")));
+        
         builder.Services.AddSwaggerGen();
+        builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
+        
+        //INFRA
+        
+        builder.Services.AddScoped<IQueryBus, InMemoryQueryBus>();
+        builder.Services.AddScoped<ICommandBus, InMemoryCommandBus>();
+        
+        
+        //HANDLERS
+        builder.Services.AddScoped<IQueryHandler<ListRecipesQuery, IEnumerable<Recipe>>, ListRecipesQueryHandler>();
+        builder.Services.AddScoped<ICommandHandler<CreateRecipeCommand>, CreateRecipeCommandHandler>();
+        
         return builder;
     }
 
@@ -28,6 +55,15 @@ public static class StartupBootstrapper
     {
         var app = builder.Build();
 
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+
+            var context = services.GetRequiredService<RecipesDbContext>();
+            context.Database.EnsureCreated();
+            // DbInitializer.Initialize(context);
+        }
+        
 // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {

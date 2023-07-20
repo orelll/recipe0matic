@@ -9,6 +9,10 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
@@ -21,7 +25,10 @@
     <ItemGroup>
       <ProjectReference Include="..\Application\Application.csproj" />
       <ProjectReference Include="..\CosmosDbTester\CosmosDbTester.csproj" />
+      <ProjectReference Include="..\Infrastructure.Blob\Infrastructure.Blob.csproj" />
       <ProjectReference Include="..\Infrastructure.CosmosDb\Infrastructure.CosmosDb.csproj" />
+      <ProjectReference Include="..\Infrastructure.Postgres\Infrastructure.Postgres.csproj" />
+      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
