@@ -15,6 +15,7 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Recipe = Domain.Features.Recipe;
 using OneOf;
+using WebApi.Features.Recipe.Get;
 
 namespace WebApi.ExtensionMethods;
 
@@ -78,6 +79,8 @@ public static class StartupBootstrapper
 
         app.UseAuthorization();
 
+        app.AddRecipeGetEndpoint();
+        
         app.MapControllers();
         return app;
     }
