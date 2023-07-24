@@ -1,5 +1,6 @@
 ﻿using Application;
 using Application.Features.Recipes.Create;
+using Application.Features.Recipes.Get;
 using Application.Features.Recipes.List;
 using Domain;
 using Domain.Abstractions.Commands;
@@ -12,6 +13,8 @@ using Infrastructure.Postgres;
 using Infrastructure.Queries;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Recipe = Domain.Features.Recipe;
+using OneOf;
 
 namespace WebApi.ExtensionMethods;
 
@@ -47,7 +50,7 @@ public static class StartupBootstrapper
         //HANDLERS
         builder.Services.AddScoped<IQueryHandler<ListRecipesQuery, IEnumerable<Recipe>>, ListRecipesQueryHandler>();
         builder.Services.AddScoped<ICommandHandler<CreateRecipeCommand>, CreateRecipeCommandHandler>();
-        
+        builder.Services.AddScoped<IQueryHandler<GetRecipeQuery, OneOf<Application.Features.Recipes.Get.Recipe, RecipeNotFound, RecipeNotReady>>, GetRecipeQueryHandler>();
         return builder;
     }
 
@@ -64,7 +67,7 @@ public static class StartupBootstrapper
             // DbInitializer.Initialize(context);
         }
         
-// Configure the HTTP request pipeline.
+        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();

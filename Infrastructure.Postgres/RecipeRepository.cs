@@ -15,19 +15,22 @@ public class RecipeRepository:IRecipeRepository
     public async Task Create(Recipe recipe)
     {
         await _context.Recipes.AddAsync(recipe.ToStorageModel());
-
         await _context.SaveChangesAsync();
     }
 
     public async Task<Recipe?> Get(string id)
     {
-        var found = await _context.Recipes.FirstOrDefaultAsync(r => r.Id == id);
+        var found = await _context.Recipes
+                                            .Include(r => r.Tags)
+                                            .FirstOrDefaultAsync(r => r.Id == id);
         return found?.FromStorageModel();
     }
 
     public async Task<IEnumerable<Recipe>> All()
     {
-        var list = await _context.Recipes.ToListAsync();
+        var list = await _context.Recipes
+                                    .Include(r => r.Tags)
+                                    .ToListAsync();
         return list.Select(x => x.FromStorageModel());
     }
 
