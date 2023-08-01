@@ -1,0 +1,35 @@
+@local-url= http://localhost:5225/
+
+@recipeId = {{postRecipe.response.body.id}}
+
+### insert new recipe
+# @name postRecipe
+POST {{local-url}}recipes
+Content-Type: application/json
+
+{
+  "name": "Tomato soup",
+  "tags": [
+    "tomato",
+    "soup",
+    "20-minutes"
+  ],
+  "ingredients": [
+    {
+      "name": "water"
+    },
+    {
+      "name": "salt"
+    },
+    {
+      "name": "tomatoes"
+    },
+    {
+      "name": "pepper"
+    }
+  ]
+}
+
+### get recipe by id
+# @name getRecipe
+GET  {{local-url}}recipes/{{recipeId}}
